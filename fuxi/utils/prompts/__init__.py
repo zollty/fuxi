@@ -1,4 +1,4 @@
-from jian.common.prompts.string import (
+from fuxi.utils.prompts.string import (
     check_valid_template,
     get_template_variables,
     jinja2_formatter,
