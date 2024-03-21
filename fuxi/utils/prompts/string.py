@@ -10,7 +10,7 @@ from typing import Any, Callable, Dict, List, Set
 # from langchain_core.prompt_values import PromptValue, StringPromptValue
 # from langchain_core.prompts.base import BasePromptTemplate
 # from langchain_core.utils import get_colored_text
-from jian.common.prompts.formatting import formatter
+from fuxi.utils.prompts.formatting import formatter
 # from langchain_core.utils.interactive_env import is_interactive_env
 
 
