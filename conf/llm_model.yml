@@ -11,9 +11,11 @@ agent:
     - "Qwen-1.8B-Chat"
   controller:
     address: http://localhost:21001
+    api_keys:
+      - EMPTY
   openai_api:
     address: http://localhost:20000/v1
-    api_keys: EMPTY
+    api_key: EMPTY
     proxy:
 
 llm:
