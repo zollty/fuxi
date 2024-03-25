@@ -9,14 +9,22 @@ agent:
     - "Qwen1.5-7B-Chat"
     - "chatglm3-6b-32k"
     - "Qwen-1.8B-Chat"
+  openai_api_server:
+    host: 127.0.0.1
+    port: 20000
+#    controller_addr: http://localhost:21001
+#    api_keys: EMPTY
+    #log_level: INFO
   controller:
     address: http://localhost:21001
     api_keys:
       - EMPTY
-  openai_api:
+  openai_api_client:
     address: http://localhost:20000/v1
-    api_key: EMPTY
+    api_keys:
+      - EMPTY
     proxy:
+
 
 llm:
   device: auto
@@ -27,12 +35,6 @@ llm:
     host: 0.0.0.0
     port: 21001
     dispatch-method: shortest_queue
-    #log_level: INFO
-  openai_api_server:
-    host: 127.0.0.1
-    port: 20000
-    controller_addr: http://localhost:21001
-    api_keys: EMPTY
     #log_level: INFO
   worker:
     host: 127.0.0.1
@@ -180,6 +182,17 @@ llm:
       vllm:
         gpu_memory_utilization: 0.5
         tensor_parallel_size: 1
+    Qwen1.5-4B-Chat:
+      infer_turbo: vllm
+      path: /ai/models/Qwen1.5-4B-Chat
+      base:
+        #num_gpus: 4
+        gpus: "1,2"
+        max_gpu_memory: 20GiB
+      vllm:
+        #max_model_len: 6016
+        gpu_memory_utilization: 0.90
+        tensor_parallel_size: 2
     chatglm3-6b:
       infer_turbo: vllm
       path: /ai/models/chatglm3-6b
@@ -196,21 +209,21 @@ llm:
       vllm:
         gpu_memory_utilization: 0.9
         tensor_parallel_size: 4
-    Chinese-Alpaca-2-7B:
-      path: /ai/models/chinese-alpaca-2-7b-hf
-      base:
-        num_gpus: 5
-        max_gpu_memory: 5GiB
-    Chinese-Alpaca-2-13B:
-      path: /ai/models/chinese-alpaca-2-13b-16k-hf
-      base:
-        num_gpus: 5
-        max_gpu_memory: 6GiB
-    Llama2-Chinese-13b-Chat:
-      path: /ai/models/Llama2-Chinese-13b-Chat
-      base:
-        num_gpus: 5
-        max_gpu_memory: 6GiB
+#    Chinese-Alpaca-2-7B:
+#      path: /ai/models/chinese-alpaca-2-7b-hf
+#      base:
+#        num_gpus: 5
+#        max_gpu_memory: 5GiB
+#    Chinese-Alpaca-2-13B:
+#      path: /ai/models/chinese-alpaca-2-13b-16k-hf
+#      base:
+#        num_gpus: 5
+#        max_gpu_memory: 6GiB
+#    Llama2-Chinese-13b-Chat:
+#      path: /ai/models/Llama2-Chinese-13b-Chat
+#      base:
+#        num_gpus: 5
+#        max_gpu_memory: 6GiB
     Qwen-14B-Chat:
       path: /ai/models/Qwen-14B-Chat-Int8
       infer_turbo: vllm

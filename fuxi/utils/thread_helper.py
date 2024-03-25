@@ -1,12 +1,15 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import (
-    Literal,
+    Awaitable,
     List,
     Optional,
     Callable,
     Generator,
     Dict,
 )
+import asyncio
+from fuxi.utils.runtime_conf import get_log_verbose, logger
+import logging
 
 
 def run_in_thread_pool(
@@ -25,3 +28,17 @@ def run_in_thread_pool(
 
         for obj in as_completed(tasks):  # TODO: Ctrl+c无法停止
             yield obj.result()
+
+
+async def wrap_done(fn: Awaitable, event: asyncio.Event):
+    """Wrap an awaitable with a event to signal when it's done or an exception is raised."""
+    try:
+        await fn
+    except Exception as e:
+        logging.exception(e)
+        msg = f"Caught exception: {e}"
+        logger.error(f'{e.__class__.__name__}: {msg}',
+                     exc_info=e if get_log_verbose() else None)
+    finally:
+        # Signal the aiter to stop.
+        event.set()
