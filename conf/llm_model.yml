@@ -267,6 +267,7 @@ llm:
     bge-reranker-large: "/ai/models/BAAI_bge-reranker-large"
     m3e-large: "/ai/models/moka-ai_m3e-large" # "moka-ai/m3e-large"
     text2vec-bge-large-chinese: "/ai/models/text2vec-bge-large-chinese" # "shibing624/text2vec-bge-large-chinese"
+    jina-embeddings-v2-base-zh: "/ai/models/jina-embeddings-v2-base-zh"
 #    ernie-tiny: "nghuyong/ernie-3.0-nano-zh"
 #    ernie-base: "nghuyong/ernie-3.0-base-zh"
 #    text2vec-base: "shibing624/text2vec-base-chinese"
@@ -286,13 +287,31 @@ llm:
 #    text-embedding-ada-002: "your OPENAI_API_KEY"
 
 embed:
-  device: cuda
+  device: "cuda:4" #  Embedding 模型运行设备。设为 "auto" 会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一
+  default_run:
+    - "bce-embedding-base_v1"
+    - "bge-large-zh-v1.5"
+    - "jina-embeddings-v2-base-zh"
+  server:
+    host: 0.0.0.0
+    port: 21199
+    version: 1.0.0
+  model_cfg:
+    bce-embedding-base_v1: "/ai/models/bce-embedding-base_v1"
+    nlp_corom_sentence-embedding_chinese-base: "/ai/models/nlp_corom_sentence-embedding_chinese-base"
+    nlp_gte_sentence-embedding_chinese-large: "/ai/models/nlp_gte_sentence-embedding_chinese-large"
+    bge-large-zh-v1.5: "/ai/models/BAAI_bge-large-zh-v1.5" # "BAAI/bge-large-zh-v1.5"
+    bge-large-zh: "/ai/models/BAAI_bge-large-zh" # "BAAI/bge-large-zh" # "/--/embeddings/BAAI/bge-large-zh_Merge_Keywords_20231215_132654" # BAAI/bge-large-zh
+    m3e-large: "/ai/models/moka-ai_m3e-large" # "moka-ai/m3e-large"
+    text2vec-bge-large-chinese: "/ai/models/text2vec-bge-large-chinese" # "shibing624/text2vec-bge-large-chinese"
+    jina-embeddings-v2-base-zh: "/ai/models/jina-embeddings-v2-base-zh"
 reranker:
   top_n: 20
   model:
     bge-reranker-large: /ai/models/BAAI_bge-reranker-large
     bge-reranker-base: BAAI/bge-reranker-base
     bce-reranker-base_v1: G:/50-TEMP/models/embed/bce-reranker-base_v1
+
 
 test-aa:
   key-bb-cc: 555

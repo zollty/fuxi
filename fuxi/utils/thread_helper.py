@@ -1,4 +1,4 @@
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed, Executor
 from typing import (
     Awaitable,
     List,
@@ -6,10 +6,17 @@ from typing import (
     Callable,
     Generator,
     Dict,
+    Union,
+    Any,
+    TypeVar,
+    cast,
 )
+from functools import partial
+from contextvars import ContextVar, copy_context
 import asyncio
 from fuxi.utils.runtime_conf import get_log_verbose, logger
 import logging
+from typing_extensions import ParamSpec, TypedDict
 
 
 def run_in_thread_pool(
@@ -42,3 +49,82 @@ async def wrap_done(fn: Awaitable, event: asyncio.Event):
     finally:
         # Signal the aiter to stop.
         event.set()
+
+
+P = ParamSpec("P")
+T = TypeVar("T")
+
+
+class RunnableConfig(TypedDict, total=False):
+    """Configuration for a Runnable."""
+
+    tags: List[str]
+    """
+    Tags for this call and any sub-calls (eg. a Chain calling an LLM).
+    You can use these to filter calls.
+    """
+
+    metadata: Dict[str, Any]
+    """
+    Metadata for this call and any sub-calls (eg. a Chain calling an LLM).
+    Keys should be strings, values should be JSON-serializable.
+    """
+
+    callbacks: Optional[Union[List, Any]]
+    """
+    Callbacks for this call and any sub-calls (eg. a Chain calling an LLM).
+    Tags are passed to all callbacks, metadata is passed to handle*Start callbacks.
+    """
+
+    run_name: str
+    """
+    Name for the tracer run for this call. Defaults to the name of the class.
+    """
+
+    max_concurrency: Optional[int]
+    """
+    Maximum number of parallel calls to make. If not provided, defaults to 
+    ThreadPoolExecutor's default.
+    """
+
+    recursion_limit: int
+    """
+    Maximum number of times a call can recurse. If not provided, defaults to 25.
+    """
+
+    configurable: Dict[str, Any]
+    """
+    Runtime values for attributes previously made configurable on this Runnable,
+    or sub-Runnables, through .configurable_fields() or .configurable_alternatives().
+    Check .output_schema() for a description of the attributes that have been made 
+    configurable.
+    """
+
+
+async def run_in_executor(
+        executor_or_config: Optional[Union[Executor, RunnableConfig]],
+        func: Callable[P, T],
+        *args: P.args,
+        **kwargs: P.kwargs,
+) -> T:
+    """Run a function in an executor.
+
+    Args:
+        executor (Executor): The executor.
+        func (Callable[P, Output]): The function.
+        *args (Any): The positional arguments to the function.
+        **kwargs (Any): The keyword arguments to the function.
+
+    Returns:
+        Output: The output of the function.
+    """
+    if executor_or_config is None or isinstance(executor_or_config, dict):
+        # Use default executor with context copied from current context
+        return await asyncio.get_running_loop().run_in_executor(
+            None,
+            cast(Callable[..., T], partial(copy_context().run, func, *args, **kwargs)),
+        )
+
+    return await asyncio.get_running_loop().run_in_executor(
+        executor_or_config, partial(func, **kwargs), *args
+    )
