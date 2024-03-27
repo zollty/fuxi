@@ -287,7 +287,7 @@ llm:
 #    text-embedding-ada-002: "your OPENAI_API_KEY"
 
 embed:
-  device: "cuda:4" #  Embedding 模型运行设备。设为 "auto" 会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一
+  device: "cuda:1" #  Embedding 模型运行设备。设为 "auto" 会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一
   default_run:
     - "bce-embedding-base_v1"
     - "bge-large-zh-v1.5"
