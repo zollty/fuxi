@@ -8,7 +8,9 @@ from typing import Optional
 # 配置nltk 模型存储路径
 import nltk
 
-NLTK_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__)), "nltk_data"))
+__current_script_path = os.path.abspath(__file__)
+runtime_root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__current_script_path))))
+NLTK_DATA_PATH = os.path.join(runtime_root_dir, "nltk_data")
 nltk.data.path = [NLTK_DATA_PATH] + nltk.data.path
 
 
