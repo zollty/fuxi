@@ -12,8 +12,8 @@ from pydantic import BaseModel
 from typing import Optional
 from fuxi.utils.runtime_conf import init_nltk
 
-
 init_nltk()
+
 
 class SpeechRequest(BaseModel):
     input: str
@@ -25,7 +25,7 @@ class SpeechRequest(BaseModel):
     speed: Optional[float] = 1.0
 
 
-app = FastAPI()
+app = FastAPI(title="伏羲AI TTS Server (melo)")
 device = 'auto'
 
 models = {
