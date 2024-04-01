@@ -1,18 +1,19 @@
-import io
-import os
+import io, os, sys
+
+# 获取当前脚本的绝对路径
+__current_script_path = os.path.abspath(__file__)
+# 将项目根目录添加到sys.path
+runtime_root_dir = os.path.dirname(os.path.dirname(os.path.dirname(__current_script_path)))
+sys.path.append(runtime_root_dir)
+
 from melo.api import TTS
 from fastapi import FastAPI, Response
 from pydantic import BaseModel
 from typing import Optional
+from fuxi.utils.runtime_conf import init_nltk
 
-# 配置nltk 模型存储路径
-import nltk
 
-__current_script_path = os.path.abspath(__file__)
-runtime_root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__current_script_path))))
-NLTK_DATA_PATH = os.path.join(runtime_root_dir, "nltk_data")
-nltk.data.path = [NLTK_DATA_PATH] + nltk.data.path
-
+init_nltk()
 
 class SpeechRequest(BaseModel):
     input: str

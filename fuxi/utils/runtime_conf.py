@@ -103,3 +103,12 @@ def get_log_verbose():
 def set_log_verbose(value):
     global _LOG_VERBOSE
     _LOG_VERBOSE = value
+
+
+def init_nltk():
+    try:
+        # 配置nltk 模型存储路径
+        import nltk
+        nltk.data.path = [os.path.join(get_runtime_root_dir(), "nltk_data")] + nltk.data.path
+    except ImportError:
+        pass
