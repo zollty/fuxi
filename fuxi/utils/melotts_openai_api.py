@@ -59,7 +59,7 @@ def text_to_speech(speechRequest: SpeechRequest):
 
 if __name__ == '__main__':
     import argparse
-    from fastapi_tool import run_api
+    from fuxi.utils.fastapi_tool import run_api
 
     parser = argparse.ArgumentParser(prog='Melo TTS', description='Melo TTS API')
     parser.add_argument("--host", type=str, default="0.0.0.0")
