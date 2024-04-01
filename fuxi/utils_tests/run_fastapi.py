@@ -257,3 +257,30 @@ def run_api(app, host, port, **kwargs):
                     )
     else:
         uvicorn.run(app, host=host, port=port, log_level=kwargs.get("log_level", "info").lower())
+
+
+if __name__ == '__main__':
+    from openaiapi import app
+    import argparse
+
+    parser = argparse.ArgumentParser(prog='Emoti TTS', description='Emoti TTS API')
+    parser.add_argument("--host", type=str, default="0.0.0.0")
+    parser.add_argument("--port", type=int, default=6006)
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        help="增加log信息",
+        dest="verbose",
+        type=bool,
+        default=False,
+    )
+    # 初始化消息
+    args = parser.parse_args()
+    host = args.host
+    port = args.port
+    log_level = "info"
+    if host == "localhost" or host == "127.0.0.1":
+        host = "0.0.0.0"
+    if args.verbose:
+        log_level = "debug"
+    run_api(app, host=host, port=port, log_level=log_level)

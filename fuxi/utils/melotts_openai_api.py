@@ -1,8 +1,15 @@
 import io
+import os
 from melo.api import TTS
 from fastapi import FastAPI, Response
 from pydantic import BaseModel
 from typing import Optional
+
+# 配置nltk 模型存储路径
+import nltk
+
+NLTK_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__)), "nltk_data"))
+nltk.data.path = [NLTK_DATA_PATH] + nltk.data.path
 
 
 class SpeechRequest(BaseModel):
@@ -40,7 +47,8 @@ default_text_dict = {
 @app.post("/v1/audio/speech")
 def text_to_speech(speechRequest: SpeechRequest):
     bio = io.BytesIO()
-    models[speechRequest.language].tts_to_file(speechRequest.input, models[speechRequest.language].hps.data.spk2id[0],
+    models[speechRequest.language].tts_to_file(speechRequest.input,
+                                               models[speechRequest.language].hps.data.spk2id[speechRequest.voice],
                                                bio, speed=speechRequest.speed, format=speechRequest.response_format)
     return Response(content=bio.getvalue(),
                     media_type=f"audio/{speechRequest.response_format}")
@@ -48,7 +56,7 @@ def text_to_speech(speechRequest: SpeechRequest):
 
 if __name__ == '__main__':
     import argparse
-    from run_fastapi import run_api
+    from fastapi_tool import run_api
 
     parser = argparse.ArgumentParser(prog='Melo TTS', description='Melo TTS API')
     parser.add_argument("--host", type=str, default="0.0.0.0")

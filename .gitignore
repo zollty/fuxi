@@ -2,6 +2,8 @@
 
 logs/
 
+nltk_data/
+
 fastchat/
 jian/
 hpdeploy/
