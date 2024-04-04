@@ -310,6 +310,8 @@ rerank:
   default_run:
     - "bce-reranker-base_v1"
     - "bge-reranker-large"
+    - "bge-reranker-v2-m3"
+    - "bge-reranker-v2-minicpm-layerwise"
   server:
     host: 0.0.0.0
     port: 21189
@@ -320,6 +322,8 @@ rerank:
   # max_length: 512 #1024?
   model_cfg:
     bge-reranker-large: "/ai/models/BAAI_bge-reranker-large"
+    bge-reranker-v2-m3: "/ai/models/bge-reranker-v2-m3"
+    bge-reranker-v2-minicpm-layerwise: "/ai/models/bge-reranker-v2-minicpm-layerwise"
 #    bce-reranker-base_v1: "G:/50-TEMP/models/embed/bce-reranker-base_v1"
     bce-reranker-base_v1: "/ai/models/bce-reranker-base_v1"
 
