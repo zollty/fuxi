@@ -305,12 +305,23 @@ embed:
     m3e-large: "/ai/models/moka-ai_m3e-large" # "moka-ai/m3e-large"
     text2vec-bge-large-chinese: "/ai/models/text2vec-bge-large-chinese" # "shibing624/text2vec-bge-large-chinese"
     jina-embeddings-v2-base-zh: "/ai/models/jina-embeddings-v2-base-zh"
-reranker:
+rerank:
+  device: "cuda:1" #  Embedding 模型运行设备。设为 "auto" 会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一
+  default_run:
+    - "bce-reranker-base_v1"
+    - "bge-reranker-large"
+  server:
+    host: 0.0.0.0
+    port: 21189
+    version: 1.0.0
   top_n: 20
-  model:
-    bge-reranker-large: /ai/models/BAAI_bge-reranker-large
-    bge-reranker-base: BAAI/bge-reranker-base
-    bce-reranker-base_v1: G:/50-TEMP/models/embed/bce-reranker-base_v1
+  batch_size: 32 # 16
+  num_workers: 0 # ?
+  # max_length: 512 #1024?
+  model_cfg:
+    bge-reranker-large: "/ai/models/BAAI_bge-reranker-large"
+#    bce-reranker-base_v1: "G:/50-TEMP/models/embed/bce-reranker-base_v1"
+    bce-reranker-base_v1: "/ai/models/bce-reranker-base_v1"
 
 
 test-aa:
