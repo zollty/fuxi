@@ -311,7 +311,7 @@ rerank:
     - "bce-reranker-base_v1"
     - "bge-reranker-large"
     - "bge-reranker-v2-m3"
-    - "bge-reranker-v2-minicpm-layerwise"
+#    - "bge-reranker-v2-minicpm-layerwise"
   server:
     host: 0.0.0.0
     port: 21189
