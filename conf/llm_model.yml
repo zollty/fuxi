@@ -290,8 +290,8 @@ embed:
   device: "cuda:1" #  Embedding 模型运行设备。设为 "auto" 会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一
   default_run:
     - "bce-embedding-base_v1"
-    - "bge-large-zh-v1.5"
     - "jina-embeddings-v2-base-zh"
+    - "bge-large-zh-v1.5"
   server:
     host: 0.0.0.0
     port: 21199
@@ -306,12 +306,12 @@ embed:
     text2vec-bge-large-chinese: "/ai/models/text2vec-bge-large-chinese" # "shibing624/text2vec-bge-large-chinese"
     jina-embeddings-v2-base-zh: "/ai/models/jina-embeddings-v2-base-zh"
 rerank:
-  device: "cuda" #  Embedding 模型运行设备。设为 "auto" 会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一
+  device: "cuda:2" #  Embedding 模型运行设备。设为 "auto" 会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一
   default_run:
     - "bce-reranker-base_v1"
-    - "bge-reranker-large"
     - "bge-reranker-v2-m3"
-    - "bge-reranker-v2-minicpm-layerwise"
+#    - "bge-reranker-large"
+#    - "bge-reranker-v2-minicpm-layerwise"
   server:
     host: 0.0.0.0
     port: 21189
