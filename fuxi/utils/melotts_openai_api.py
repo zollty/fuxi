@@ -25,18 +25,6 @@ class SpeechRequest(BaseModel):
     speed: Optional[float] = 1.0
 
 
-app = FastAPI(title="伏羲AI TTS Server (melo)")
-device = 'auto'
-
-models = {
-    'EN': TTS(language='EN', device=device),
-    'ES': TTS(language='ES', device=device),
-    'FR': TTS(language='FR', device=device),
-    'ZH': TTS(language='ZH', device=device),
-    'JP': TTS(language='JP', device=device),
-    'KR': TTS(language='KR', device=device),
-}
-
 default_text_dict = {
     'EN': 'The field of text-to-speech has seen rapid development recently.',
     'ES': 'El campo de la conversión de texto a voz ha experimentado un rápido desarrollo recientemente.',
@@ -47,14 +35,28 @@ default_text_dict = {
 }
 
 
-@app.post("/v1/audio/speech")
-def text_to_speech(speechRequest: SpeechRequest):
-    bio = io.BytesIO()
-    models[speechRequest.language].tts_to_file(speechRequest.input,
-                                               models[speechRequest.language].hps.data.spk2id[speechRequest.voice],
-                                               bio, speed=speechRequest.speed, format=speechRequest.response_format)
-    return Response(content=bio.getvalue(),
-                    media_type=f"audio/{speechRequest.response_format}")
+def base_init_0(device):
+    app = FastAPI(title="伏羲AI TTS Server (melo)")
+
+    models = {
+        'EN': TTS(language='EN', device=device),
+        'ES': TTS(language='ES', device=device),
+        'FR': TTS(language='FR', device=device),
+        'ZH': TTS(language='ZH', device=device),
+        'JP': TTS(language='JP', device=device),
+        'KR': TTS(language='KR', device=device),
+    }
+
+    @app.post("/v1/audio/speech")
+    def text_to_speech(speechRequest: SpeechRequest):
+        bio = io.BytesIO()
+        models[speechRequest.language].tts_to_file(speechRequest.input,
+                                                   models[speechRequest.language].hps.data.spk2id[speechRequest.voice],
+                                                   bio, speed=speechRequest.speed, format=speechRequest.response_format)
+        return Response(content=bio.getvalue(),
+                        media_type=f"audio/{speechRequest.response_format}")
+
+    return app
 
 
 if __name__ == '__main__':
@@ -64,6 +66,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='Melo TTS', description='Melo TTS API')
     parser.add_argument("--host", type=str, default="0.0.0.0")
     parser.add_argument("--port", type=int, default=6007)
+    parser.add_argument("--device", type=str, default="auto")
     parser.add_argument(
         "-v",
         "--verbose",
@@ -81,4 +84,10 @@ if __name__ == '__main__':
         host = "0.0.0.0"
     if args.verbose:
         log_level = "debug"
+
+    app = base_init_0(args.device)
+
+    from fuxi.utils.fastapi_tool import MakeFastAPIOffline
+
+    MakeFastAPIOffline(app)
     run_api(app, host=host, port=port, log_level=log_level)
