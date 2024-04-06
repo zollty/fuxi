@@ -50,10 +50,10 @@ def base_init_0(device):
     @app.post("/v1/audio/speech")
     def text_to_speech(speechRequest: SpeechRequest):
         bio = io.BytesIO()
-        format = None if speechRequest.response_format == 'wav' else speechRequest.response_format
+        # format = None if speechRequest.response_format == 'wav' else speechRequest.response_format
         models[speechRequest.language].tts_to_file(speechRequest.input,
                                                    models[speechRequest.language].hps.data.spk2id[speechRequest.voice],
-                                                   bio, speed=speechRequest.speed, format=format)
+                                                   bio, speed=speechRequest.speed, format=speechRequest.response_format)
         return Response(content=bio.getvalue(),
                         media_type=f"audio/{speechRequest.response_format}")
 
