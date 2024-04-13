@@ -193,6 +193,28 @@ llm:
         #max_model_len: 6016
         gpu_memory_utilization: 0.90
         tensor_parallel_size: 2
+    Qwen1.5-MoE-A2.7B-Chat-GPTQ-Int4:
+      infer_turbo: vllm
+      path: /ai/models/Qwen1.5-MoE-A2.7B-Chat-GPTQ-Int4
+      base:
+        #num_gpus: 4
+        gpus: "1,2"
+        max_gpu_memory: 20GiB
+      vllm:
+        #max_model_len: 6016
+        gpu_memory_utilization: 0.90
+        tensor_parallel_size: 2
+    360Zhinao-7B-Chat-360K:
+      infer_turbo: vllm
+      path: /ai/models/360Zhinao-7B-Chat-360K
+      base:
+        #num_gpus: 4
+        gpus: "0,1,2,3"
+        max_gpu_memory: 12GiB
+      vllm:
+        #max_model_len: 6016
+        gpu_memory_utilization: 0.70
+        tensor_parallel_size: 4
     chatglm3-6b:
       infer_turbo: vllm
       path: /ai/models/chatglm3-6b
