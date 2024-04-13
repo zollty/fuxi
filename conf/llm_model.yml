@@ -172,7 +172,7 @@ llm:
       base:
         #num_gpus: 4
         gpus: "1"
-        max_gpu_memory: 22GiB
+        max_gpu_memory: 24GiB
       vllm:
         #max_model_len: 6016
         gpu_memory_utilization: 0.90
