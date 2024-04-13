@@ -170,8 +170,8 @@ llm:
       path: /ai/models/Qwen1.5-1.8B-Chat-AWQ
       base:
         #num_gpus: 4
-        gpus: "0,1,2"
-        max_gpu_memory: 20GiB
+        gpus: "1,2"
+        max_gpu_memory: 22GiB
       vllm:
         #max_model_len: 6016
         gpu_memory_utilization: 0.90
