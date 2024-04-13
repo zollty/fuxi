@@ -10,7 +10,6 @@ agent:
     - "Qwen1.5-7B-Chat"
     - "chatglm3-6b-32k"
     - "Qwen1.5-1.8B-Chat-AWQ"
-    - "Qwen-1.8B-Chat"
   openai_api_server:
     host: 127.0.0.1
     port: 20000
