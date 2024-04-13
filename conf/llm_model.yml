@@ -111,6 +111,7 @@ llm:
       use_v2_block_manager: false
       tokenizer_pool_size: 0
       tokenizer_pool_type: ray
+      tokenizer_pool_extra_config: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
