@@ -211,13 +211,6 @@ llm:
     Qwen1.5-MoE-A2.7B-Chat-GPTQ-Int4:
       #infer_turbo: vllm
       path: /ai/models/Qwen1.5-MoE-A2.7B-Chat-GPTQ-Int4
-      plain: # see: fastchat\serve\model_worker.py
-        gptq:
-          gptq_act_order: false
-          gptq_ckpt: null
-          gptq_groupsize: -1
-          gptq_wbits: 16
-          disable_exllama: true
       base:
         #num_gpus: 4
         gpus: "1"
