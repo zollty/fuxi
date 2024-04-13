@@ -118,6 +118,10 @@ llm:
       image_token_id: null
       image_input_shape: null
       image_feature_size: null
+      scheduler_delay_factor: 0.0
+      enable_chunked_prefill: false
+      speculative_model: null
+      num_speculative_tokens: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
