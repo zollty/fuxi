@@ -9,6 +9,7 @@ agent:
     - "Qwen1.5-MoE-A2.7B-Chat"
     - "Qwen1.5-7B-Chat"
     - "chatglm3-6b-32k"
+    - "Qwen1.5-1.8B-Chat"
     - "Qwen1.5-1.8B-Chat-AWQ"
   openai_api_server:
     host: 127.0.0.1
@@ -205,6 +206,15 @@ llm:
       base:
         gpus: "4"
         max_gpu_memory: 12GiB
+      vllm:
+        gpu_memory_utilization: 0.9
+        tensor_parallel_size: 1
+    Qwen1.5-1.8B-Chat:
+      path: /ai/models/Qwen1.5-1.8B-Chat
+      infer_turbo: vllm
+      base:
+        gpus: "1"
+        max_gpu_memory: 22GiB
       vllm:
         gpu_memory_utilization: 0.9
         tensor_parallel_size: 1
