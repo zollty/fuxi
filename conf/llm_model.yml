@@ -114,6 +114,7 @@ llm:
       tokenizer_pool_extra_config: null
       forced_num_gpu_blocks: null
       num_lookahead_slots: 0
+      image_input_type: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
