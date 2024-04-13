@@ -108,6 +108,7 @@ llm:
       lora_dtype: 'auto'
       max_cpu_loras: null
       ray_workers_use_nsight: false
+      use_v2_block_manager: false
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
