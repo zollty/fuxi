@@ -165,6 +165,17 @@ llm:
         #max_model_len: 6016
         gpu_memory_utilization: 0.70
         tensor_parallel_size: 4
+    Qwen1.5-1.8B-Chat-AWQ:
+      #infer_turbo: vllm
+      path: /ai/models/Qwen1.5-1.8B-Chat-AWQ
+      base:
+        #num_gpus: 4
+        gpus: "1"
+        max_gpu_memory: 22GiB
+      vllm:
+        #max_model_len: 6016
+        gpu_memory_utilization: 0.90
+        tensor_parallel_size: 1
     Qwen1.5-14B-Chat-GPTQ-Int4:
       #infer_turbo: vllm
       path: /ai/models/Qwen1.5-14B-Chat-GPTQ-Int4
