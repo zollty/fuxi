@@ -112,6 +112,7 @@ llm:
       tokenizer_pool_size: 0
       tokenizer_pool_type: ray
       tokenizer_pool_extra_config: null
+      forced_num_gpu_blocks: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
