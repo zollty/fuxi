@@ -168,13 +168,6 @@ llm:
     Qwen1.5-14B-Chat-GPTQ-Int4:
       #infer_turbo: vllm
       path: /ai/models/Qwen1.5-14B-Chat-GPTQ-Int4
-      plain: # see: fastchat\serve\model_worker.py
-        gptq:
-          gptq_act_order: false
-          gptq_ckpt: null
-          gptq_groupsize: -1
-          gptq_wbits: 16
-          disable_exllama: true
       base:
         #num_gpus: 4
         gpus: "0,1,2"
@@ -218,10 +211,17 @@ llm:
     Qwen1.5-MoE-A2.7B-Chat-GPTQ-Int4:
       #infer_turbo: vllm
       path: /ai/models/Qwen1.5-MoE-A2.7B-Chat-GPTQ-Int4
+      plain: # see: fastchat\serve\model_worker.py
+        gptq:
+          gptq_act_order: false
+          gptq_ckpt: null
+          gptq_groupsize: -1
+          gptq_wbits: 16
+          disable_exllama: true
       base:
         #num_gpus: 4
         gpus: "1"
-        max_gpu_memory: 24GiB
+        max_gpu_memory: 23GiB
       vllm:
         #max_model_len: 6016
         gpu_memory_utilization: 0.90
