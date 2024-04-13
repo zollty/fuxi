@@ -224,12 +224,12 @@ llm:
       path: /ai/models/Qwen1.5-MoE-A2.7B-Chat
       base:
         #num_gpus: 4
-        gpus: "1,2"
+        gpus: "1"
         max_gpu_memory: 24GiB
       vllm:
         #max_model_len: 6016
-        gpu_memory_utilization: 0.50
-        tensor_parallel_size: 2
+        gpu_memory_utilization: 0.90
+        tensor_parallel_size: 1
     360Zhinao-7B-Chat-360K:
       infer_turbo: vllm
       path: /ai/models/360Zhinao-7B-Chat-360K
