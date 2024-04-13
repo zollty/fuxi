@@ -213,8 +213,8 @@ llm:
       path: /ai/models/Qwen1.5-MoE-A2.7B-Chat-GPTQ-Int4
       base:
         #num_gpus: 4
-        gpus: "1,2,3"
-        max_gpu_memory: 20GiB
+        gpus: "0,1,2,3"
+        max_gpu_memory: 15GiB
       vllm:
         #max_model_len: 6016
         gpu_memory_utilization: 0.90
