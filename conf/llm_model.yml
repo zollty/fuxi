@@ -72,6 +72,10 @@ llm:
     #        gptq_ckpt: null
     #        gptq_groupsize: -1
     #        gptq_wbits: 16
+    sglang:
+      limit_worker_concurrency: 1024
+      mem_fraction_static: 0.9
+      multimodal: false
     vllm: # see: https://github.com/vllm-project/vllm/blob/main/vllm/engine/arg_utils.py
       block_size: 16
       disable_log_requests: false
@@ -145,7 +149,7 @@ llm:
         gpus: "0,1,2,3"
         max_gpu_memory: 12GiB
     Qwen1.5-7B-Chat:
-      infer_turbo: vllm
+      infer_turbo: sglang
       path: /ai/models/Qwen1.5-7B-Chat
       base:
         #num_gpus: 4
