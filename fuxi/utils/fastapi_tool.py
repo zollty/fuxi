@@ -70,7 +70,7 @@ def set_httpx_config(
     #     host = ":".join(x.split(":")[:2])
     #     if host not in no_proxy:
     #         no_proxy.append(host)
-    # os.environ["NO_PROXY"] = ",".join(no_proxy)
+    os.environ["NO_PROXY"] = ",".join(no_proxy)
 
     # 简单的清除系统代理不是个好的选择，影响太多。似乎修改代理服务器的bypass列表更好。
     # patch requests to use custom proxies instead of system settings
