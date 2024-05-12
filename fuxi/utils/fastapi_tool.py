@@ -58,6 +58,8 @@ def set_httpx_config(
     no_proxy += [
         # do not use proxy for locahost
         "http://127.0.0.1",
+        "http://192.168.33.105",
+        "http://192.168.33.104",
         "http://localhost",
     ]
 
