@@ -58,9 +58,9 @@ def set_httpx_config(
     no_proxy += [
         # do not use proxy for locahost
         "http://127.0.0.1",
+        "http://localhost",
         "http://192.168.33.105",
         "http://192.168.33.104",
-        "http://localhost",
     ]
 
     # do not use proxy for user deployed api servers
@@ -96,6 +96,8 @@ def get_httpx_client(
         # do not use proxy for locahost
         "all://127.0.0.1": None,
         "all://localhost": None,
+        "all://192.168.33.105": None,
+        "all://192.168.33.104": None,
     }
     # do not use proxy for user deployed fastchat servers
     # for x in [
