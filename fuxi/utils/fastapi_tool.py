@@ -61,6 +61,7 @@ def set_httpx_config(
         "http://localhost",
         "http://192.168.33.105",
         "http://192.168.33.104",
+        "http://172.16.8.91",
     ]
 
     # do not use proxy for user deployed api servers
@@ -72,7 +73,8 @@ def set_httpx_config(
     #     host = ":".join(x.split(":")[:2])
     #     if host not in no_proxy:
     #         no_proxy.append(host)
-    os.environ["NO_PROXY"] = ",".join(no_proxy)
+    os.environ["no_proxy"] = ",".join(no_proxy)
+    print(f"----------------------proxy: {proxies}, no_proxy: {no_proxy}")
 
     # 简单的清除系统代理不是个好的选择，影响太多。似乎修改代理服务器的bypass列表更好。
     # patch requests to use custom proxies instead of system settings
