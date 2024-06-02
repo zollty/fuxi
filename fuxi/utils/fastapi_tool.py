@@ -250,6 +250,31 @@ def create_app(mount_fns: List[Any],
     return app
 
 
+def create_app_without_httpx(mount_fns: List[Any],
+               version: str = "1.0.0",
+               title: str = "FenghouAI API Server",
+               cross_domain: bool = True,
+               ):
+    app = FastAPI(
+        title=title,
+        version=version
+    )
+
+    if cross_domain:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=["*"],
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+
+    for fn in mount_fns:
+        fn(app)
+
+    return app
+
+
 def run_api(app, host, port, **kwargs):
     import sys
     MakeFastAPIOffline(app)
