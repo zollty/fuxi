@@ -85,6 +85,31 @@ def set_httpx_config(
     urllib.request.getproxies = _get_proxies
 
 
+def set_no_proxy():
+    # set host to bypass proxy
+    no_proxy = [x.strip() for x in os.environ.get("no_proxy", "").split(",") if x.strip()]
+    no_proxy += [
+        # do not use proxy for locahost
+        "http://127.0.0.1",
+        "http://localhost",
+        "http://192.168.33.105",
+        "http://192.168.33.104",
+        "http://172.16.8.91",
+    ]
+
+    # do not use proxy for user deployed api servers
+    # for x in [
+    #     fschat_controller_address(),
+    #     fschat_model_worker_address(),
+    #     fschat_openai_api_address(),
+    # ]:
+    #     host = ":".join(x.split(":")[:2])
+    #     if host not in no_proxy:
+    #         no_proxy.append(host)
+    os.environ["no_proxy"] = ",".join(no_proxy)
+    return no_proxy
+
+
 def get_httpx_client(
         use_async: bool = False,
         proxies: Union[str, Dict] = None,
