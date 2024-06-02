@@ -26,6 +26,10 @@ agent:
     api_keys:
       - EMPTY
     proxy:
+  internet_tools_server:
+    host: 127.0.0.1
+    port: 8111
+
 
 
 llm:
