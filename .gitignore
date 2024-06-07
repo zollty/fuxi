@@ -7,6 +7,7 @@ nltk_data/
 fastchat/
 jian/
 hpdeploy/
+deep_parser/
 
 temp/
 tmp/
