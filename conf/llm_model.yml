@@ -1,11 +1,13 @@
 agent:
   default_model_order:
     - "Qwen1.5-14B-Chat-GPTQ-Int4"
+    - "Qwen2-7B-Instruct"
     - "Qwen1.5-7B-Chat"
     - "chatglm3-6b-32k"
     - "Qwen-1.8B-Chat"
   default_long_context_model_order:
     - "Qwen1.5-14B-Chat-GPTQ-Int4"
+    - "Qwen2-7B-Instruct"
     - "Qwen1.5-MoE-A2.7B-Chat"
     - "Qwen1.5-7B-Chat"
     - "chatglm3-6b-32k"
@@ -106,7 +108,7 @@ llm:
       max_parallel_loading_workers: null
       enable_prefix_caching: false
       enforce_eager: false
-      max_context_len_to_capture: 8192
+      max_context_len_to_capture: null
       kv_cache_dtype: 'auto'
       max_logprobs: 5  # OpenAI default value
       code_revision: null
@@ -139,7 +141,7 @@ llm:
       disable_sliding_window: false
       rope_scaling: null
       rope_theta: null
-      max_seq_len_to_capture: null
+      max_seq_len_to_capture: 8192
       fully_sharded_loras: null
       long_lora_scaling_factors: null
       num_gpu_blocks_override: null
@@ -148,11 +150,12 @@ llm:
       image_processor: null
       image_processor_revision: null
       disable_image_processor: false
-      guided_decoding_backend: null
+      guided_decoding_backend: 'outlines'
       speculative_max_model_len: null
       speculative_disable_by_batch_size: false
       ngram_prompt_lookup_max: null
       ngram_prompt_lookup_min: null
+      qlora_adapter_name_or_path: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
@@ -185,7 +188,7 @@ llm:
       vllm:
         #max_model_len: 6016
         gpu_memory_utilization: 0.80
-        tensor_parallel_size: 4
+        tensor_parallel_size: 2
     Qwen1.5-7B-Chat:
       infer_turbo: sglang
       path: /ai/models/Qwen1.5-7B-Chat
