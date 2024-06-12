@@ -141,6 +141,7 @@ llm:
       rope_theta: null
       max_seq_len_to_capture: null
       fully_sharded_loras: null
+      long_lora_scaling_factors: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
