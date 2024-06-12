@@ -134,6 +134,7 @@ llm:
       num_speculative_tokens: null
       served_model_name: null
       skip_tokenizer_init: false
+      quantization_param_path: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
