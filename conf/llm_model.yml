@@ -138,6 +138,7 @@ llm:
       distributed_executor_backend: null
       disable_sliding_window: false
       rope_scaling: null
+      rope_theta: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
