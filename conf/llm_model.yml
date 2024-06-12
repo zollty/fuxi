@@ -145,6 +145,9 @@ llm:
       num_gpu_blocks_override: null
       model_loader_extra_config: null
       preemption_mode: null
+      image_processor: null
+      image_processor_revision: null
+      disable_image_processor: false
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
