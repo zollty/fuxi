@@ -151,6 +151,7 @@ llm:
       guided_decoding_backend: null
       speculative_max_model_len: null
       speculative_disable_by_batch_size: false
+      ngram_prompt_lookup_max: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
