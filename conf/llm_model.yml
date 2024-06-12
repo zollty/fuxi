@@ -149,6 +149,7 @@ llm:
       image_processor_revision: null
       disable_image_processor: false
       guided_decoding_backend: null
+      speculative_max_model_len: null
   default_model_cfg:
     host: 127.0.0.1
     port: 20002
