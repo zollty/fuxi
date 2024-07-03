@@ -47,7 +47,7 @@ def base_init_0(device):
         if rt > 1:
             rate = "+" + rt + "%"
         elif rt < -1:
-            rate = "-" + rt + "%"
+            rate = "-" + (0 - rt) + "%"
         communicate = edge_tts.Communicate(speechRequest.input, speechRequest.voice, rate)
         async for chunk in communicate.stream():
             if chunk["type"] == "audio":
