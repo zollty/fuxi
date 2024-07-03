@@ -48,7 +48,7 @@ def base_init_0(device):
             rate = "+" + rt + "%"
         elif rt < -1:
             rate = "-" + (0 - rt) + "%"
-        communicate = edge_tts.Communicate(speechRequest.input, speechRequest.voice, rate)
+        communicate = edge_tts.Communicate(speechRequest.input, voice=speechRequest.voice, rate=rate)
         async for chunk in communicate.stream():
             if chunk["type"] == "audio":
                 bio.write(chunk["data"])
