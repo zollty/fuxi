@@ -11,6 +11,7 @@ from fastapi import FastAPI, Response
 from pydantic import BaseModel
 from typing import Optional
 
+
 class SpeechRequest(BaseModel):
     input: str
     voice: str = 'zh-CN-YunxiNeural'
@@ -41,12 +42,12 @@ def base_init_0(device):
     async def text_to_speech(speechRequest: SpeechRequest):
         bio = io.BytesIO()
         # format = None if speechRequest.response_format == 'wav' else speechRequest.response_format
-        rt = (speechRequest.speed-1.0)*100
+        rt = (speechRequest.speed - 1.0) * 100
         rate = "+0%"
-        if rt>1:
-            rate = "+"+rt+"%"
-        elif rt<-1:
-            rate = "-"+rt+"%"
+        if rt > 1:
+            rate = "+" + rt + "%"
+        elif rt < -1:
+            rate = "-" + rt + "%"
         communicate = edge_tts.Communicate(speechRequest.input, speechRequest.voice, rate)
         async for chunk in communicate.stream():
             if chunk["type"] == "audio":
