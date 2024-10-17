@@ -374,16 +374,16 @@ llm:
       api_key: ""
       embed_model: "text-embedding-v1"  # embedding 模型名称
 
-  embed_model_cfg:
-    bce-embedding-base_v1: "/ai/models/bce-embedding-base_v1"
-    nlp_corom_sentence-embedding_chinese-base: "/ai/models/nlp_corom_sentence-embedding_chinese-base"
-    nlp_gte_sentence-embedding_chinese-large: "/ai/models/nlp_gte_sentence-embedding_chinese-large"
-    bge-large-zh-v1.5: "/ai/models/BAAI_bge-large-zh-v1.5" # "BAAI/bge-large-zh-v1.5"
-    bge-large-zh: "/ai/models/BAAI_bge-large-zh" # "BAAI/bge-large-zh" # "/--/embeddings/BAAI/bge-large-zh_Merge_Keywords_20231215_132654" # BAAI/bge-large-zh
-    bge-reranker-large: "/ai/models/BAAI_bge-reranker-large"
-    m3e-large: "/ai/models/moka-ai_m3e-large" # "moka-ai/m3e-large"
-    text2vec-bge-large-chinese: "/ai/models/text2vec-bge-large-chinese" # "shibing624/text2vec-bge-large-chinese"
-    jina-embeddings-v2-base-zh: "/ai/models/jina-embeddings-v2-base-zh"
+#  embed_model_cfg:
+#    bce-embedding-base_v1: "/ai/models/bce-embedding-base_v1"
+#    nlp_corom_sentence-embedding_chinese-base: "/ai/models/nlp_corom_sentence-embedding_chinese-base"
+#    nlp_gte_sentence-embedding_chinese-large: "/ai/models/nlp_gte_sentence-embedding_chinese-large"
+#    bge-large-zh-v1.5: "/ai/models/BAAI_bge-large-zh-v1.5" # "BAAI/bge-large-zh-v1.5"
+#    bge-large-zh: "/ai/models/BAAI_bge-large-zh" # "BAAI/bge-large-zh" # "/--/embeddings/BAAI/bge-large-zh_Merge_Keywords_20231215_132654" # BAAI/bge-large-zh
+#    bge-reranker-large: "/ai/models/BAAI_bge-reranker-large"
+#    m3e-large: "/ai/models/moka-ai_m3e-large" # "moka-ai/m3e-large"
+#    text2vec-bge-large-chinese: "/ai/models/text2vec-bge-large-chinese" # "shibing624/text2vec-bge-large-chinese"
+#    jina-embeddings-v2-base-zh: "/ai/models/jina-embeddings-v2-base-zh"
 #    ernie-tiny: "nghuyong/ernie-3.0-nano-zh"
 #    ernie-base: "nghuyong/ernie-3.0-base-zh"
 #    text2vec-base: "shibing624/text2vec-base-chinese"
