@@ -210,8 +210,8 @@ llm:
         #num_gpus: 4
 #        gpus: "0,1,2,3"
 #        max_gpu_memory: 12GiB
-        gpus: "2,3"
-        max_gpu_memory: 22GiB
+        gpus: "0,1"
+        max_gpu_memory: 20GiB
       vllm:
         #max_model_len: 6016
         gpu_memory_utilization: 0.70
